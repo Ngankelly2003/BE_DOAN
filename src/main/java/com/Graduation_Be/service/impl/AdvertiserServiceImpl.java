@@ -185,9 +185,11 @@ public class AdvertiserServiceImpl implements AdvertiserService {
         return null;
     }
 
-    @Override
-    public void deleteAdvertiser(Long roleId) {
-        adveriserRespository.deleteById(roleId);
+    @Transactional
+    public void deleteAdvertiser(Long advertiserId) {
+        revenueRepository.deleteByAdvertisementAdvertiserId(advertiserId);
+
+        adveriserRespository.deleteById(advertiserId);
     }
 
     @Override
