@@ -88,7 +88,7 @@ public class AdvertiserServiceImpl implements AdvertiserService {
     public List<AdvertisementResponseDto> getListAdvertiserByUser(Long userId) {
             List<AdvertisementEntity> advertisementEntities = adveriserRespository.findAllByUserId(userId);
 
-        return  advertisementMapper.toListAdvertiserResponse(advertisementEntities);
+//        return  advertisementMapper.toListAdvertiserResponse(advertisementEntities);
 //        // Collect unique AdvertisingFieldIds
 //        Set<Long> allFieldIds = advertisementEntities.stream()
 //                .map(AdvertisementEntity::getAdvertisementFieldId)
@@ -105,21 +105,18 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 //                ));
 //
 //        // Map AdvertisementEntities to AdvertisementResponseDtos
-//        return advertisementEntities.stream().map(entity -> {
-//            AdvertisementResponseDto dto = new AdvertisementResponseDto();
-//            dto.setAdvertisementId(entity.getAdvertisementId());
-//            dto.setAdvertisementName(entity.getAdvertisementName());
-//            dto.setAdvertisementLink(entity.getAdvertisementLink());
-//            dto.setAdvertisementPosition(entity.getAdvertisementPosition());
-//            dto.setStartTime(entity.getStartDate() != null ? entity.getStartDate().atStartOfDay() : null);
-//            dto.setEndTime(entity.getEndDate() != null ? entity.getEndDate().atTime(LocalTime.MAX) : null);
-//            dto.setPrice(entity.getPrice());
-//            dto.setStatus(entity.getStatus());
-//            dto.setAdvertisingFields(adveriserRespository.getAdvertisingFieldsByAdvertisementId(entity.getAdvertisementId()).stream()
-//                    .map(fieldId -> fieldDtoMap.get(fieldId.getAdvertisementFieldId()))
-//                    .collect(Collectors.toList()));
-//            return dto;
-//        }).collect(Collectors.toList());
+        return advertisementEntities.stream().map(entity -> {
+            AdvertisementResponseDto dto = new AdvertisementResponseDto();
+            dto.setAdvertisementId(entity.getAdvertisementId());
+            dto.setAdvertisementName(entity.getAdvertisementName());
+            dto.setAdvertisementLink(entity.getAdvertisementLink());
+            dto.setAdvertisementPosition(entity.getAdvertisementPosition());
+            dto.setStartTime(entity.getStartDate() != null ? entity.getStartDate().atStartOfDay() : null);
+            dto.setEndTime(entity.getEndDate() != null ? entity.getEndDate().atTime(LocalTime.MAX) : null);
+            dto.setPrice(entity.getPrice());
+            dto.setStatus(entity.getStatus());
+            return dto;
+        }).collect(Collectors.toList());
     }
 
 //    update quangr cao theo user

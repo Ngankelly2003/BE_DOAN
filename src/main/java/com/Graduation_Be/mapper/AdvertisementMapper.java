@@ -30,6 +30,7 @@ public interface AdvertisementMapper {
     @Mapping(target = "startTime", source = "startDate")
     @Mapping(target = "endTime", source = "endDate")
     @Mapping(target = "advertisingFields", source = "advertisingFields")
+    @Mapping(target = "transactionRef", source = "transactionRef")
 
     @AfterMapping
     default void afterMapping(@MappingTarget AdvertisementResponseDto dto, AdvertisementEntity entity) {

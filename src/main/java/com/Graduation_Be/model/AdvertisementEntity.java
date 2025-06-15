@@ -1,4 +1,3 @@
-
 package com.Graduation_Be.model;
 
 import com.Graduation_Be.shard.baseModel.BaseModel;
@@ -67,6 +66,9 @@ public class AdvertisementEntity extends BaseModel {
     @Column(name = "AdvertisementFieldId")
     Long AdvertisementFieldId;
 
-    @OneToMany(mappedBy = "advertisementEntity",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "transactionRef")
+    String transactionRef;
+
+    @OneToMany(mappedBy = "advertisementEntity",cascade = CascadeType.ALL, orphanRemoval = true)
     List<AdvertisingFieldId> advertisingFields;
 }
